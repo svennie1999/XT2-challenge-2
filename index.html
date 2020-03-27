@@ -1,0 +1,182 @@
+<meta charset="UTF-8">
+<title>SpaceX</title>
+<link rel="stylesheet" type="text/css" href="Voorbeeld-1.css">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+
+<ul class="cards">
+  <li class="cards_item">
+    <div class="card">
+      <img class="card_image-spacex" src="afbeeldingen/spacex-logo.png">
+    </div>
+  </li>
+</ul>
+
+<ul class="cards">
+  <li class="cards_item">
+    <div class="card">
+      <div class="card_content">
+        <div class="card_title">Distance</div>
+        <p class="card_text"></p>
+      </div>
+      <div id="card_chart-distance"></div>
+    </div>
+  </li>
+  <li class="cards_item">
+    <div class="card">
+      <div class="card_content">
+        <div class="card_title">Speed</div>
+        <div class="card_text"></div>
+      </div>
+      <div id="card_chart-speed"></div>
+    </div>
+  </li>
+  <li class="cards_item">
+    <div class="card">
+      <div class="card_content">
+        <div class="card_title">Activities</div>
+      </div>
+      <div id="card_chart-activities"></div>
+    </div>
+  </li>
+
+  <li class="cards_item">
+    <div class="card">
+      <div class="card_content">
+        <div class="card_title">Add a graphic</div>
+      </div>
+      <img class="card_image-plus-icon" src="afbeeldingen/plus-icon-white.png">
+    </div>
+  </li>
+  <li class="cards_item">
+    <div class="card">
+      <div class="card_content">
+        <div class="card_title">Add a graphic</div>
+      </div>
+      <img class="card_image-plus-icon" src="afbeeldingen/plus-icon-white.png">
+    </div>
+  </li>
+  <li class="cards_item">
+    <div class="card">
+      <div class="card_content">
+        <div class="card_title">Add a graphic</div>
+      </div>
+      <img class="card_image-plus-icon" src="afbeeldingen/plus-icon-white.png">
+    </div>
+  </li>
+
+  <li class="cards_item">
+    <div class="card">
+      <div class="card_content">
+        <div class="card_title">Add a graphic</div>
+      </div>
+      <img class="card_image-plus-icon" src="afbeeldingen/plus-icon-white.png">
+    </div>
+  </li><li class="cards_item">
+    <div class="card">
+      <div class="card_content">
+        <div class="card_title">Add a graphic</div>
+      </div>
+      <img class="card_image-plus-icon" src="afbeeldingen/plus-icon-white.png">
+    </div>
+  </li><li class="cards_item">
+    <div class="card">
+      <div class="card_content">
+        <div class="card_title">Add a graphic</div>
+      </div>
+      <img class="card_image-plus-icon" src="afbeeldingen/plus-icon-white.png">
+    </div>
+  </li>
+</ul>
+
+ <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['ID',        'Distance', 'Y', 'Temperature', 'diameter'],
+          ['Sun',       0,      0,      5500,       20000],
+          ['Mercury',   58,     0,      464,        4879.4],
+          ['Venus',     108,    0,      167,        12104],
+          ['Earth',     150,    0,      14,         12742],
+          ['Mars',      228,    0,      -63,        6779],
+          //['Jupiter',   778,    0,      -121,       139820],
+          //['Saturn',    1427,   0,      -130,       116460],
+          //['Uranus',    2871,   0,      -205,       50724],
+          //['Neptune',   4498,   0,      -220,       49244],
+
+          ['SpaceX',    200,    0,      20,         1]
+
+          //distance in 1.000.000km
+          //diameter in 1km
+        ]);
+
+        var options = {
+          title: 'Distances in the Solar System',
+          colorAxis: {colors: ['white', 'red']},
+          hAxis: {title: 'Distance to the sun (1.000.000 km)'},
+          backgroundColor: { fill:'transparent' },
+        };
+
+        var chart = new google.visualization.BubbleChart(document.getElementById('card_chart-distance'));
+        chart.draw(data, options);
+        
+      }
+</script>
+
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Speed', 400],
+        ]);
+
+        var options = {
+          redFrom: 420, redTo: 500,
+          yellowFrom: 350, yellowTo: 420,
+          minorTicks: 5, max:500,
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('card_chart-speed'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0,1, 300 + Math.round(70 * Math.random()));
+          chart.draw(data, options);
+        }, 1000);
+
+      }
+    </script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Social',  3],
+          ['Work out', 1],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          pieHole: 0.5, backgroundColor: { fill:'transparent' },
+          legend : {position:"none"},
+          colors: ['#4C1E71', '#642A93', '#8552AD', '#A883C6', '#D9C4EA'],
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('card_chart-activities'));
+        chart.draw(data, options);
+      }
+    </script>
+
+</body>
